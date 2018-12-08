@@ -1,8 +1,12 @@
+import os,sys
+BASEPATH = os.path.dirname(os.path.realpath(__file__)) + '/../../'
+sys.path.append(BASEPATH)
+import datetime
+from decimal import ROUND_HALF_EVEN, InvalidOperation
 from urllib.request import urlopen
 from xml.dom import minidom
-import datetime
-from decimal import Decimal as D, ROUND_HALF_EVEN, InvalidOperation
-from contants import *
+
+from .contants import *
 
 
 class Tcmb:
