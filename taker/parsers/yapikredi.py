@@ -5,7 +5,7 @@ from datetime import datetime
 from taker.parsers.contants import *
 
 
-class YapiKredi(object):
+class ParserYapiKredi(object):
     """
     {
         "response":
@@ -40,12 +40,18 @@ class YapiKredi(object):
     """
 
     def get_rates(self, timestamp):
-        response = requests.get(YAPIKREDI_URL)
+        response = requests.get(YAPIKREDI_URL).json()
         ret = {}
         for exchange_list in response:
             for rate in exchange_list:
-                rate["timestamp"] = timestamp
-                if rate["majorCurrency"] in [CURRENCY_EUR, CURRENCY_USD]:
-                    ret[rate["majorCurrency"]] = rate
+                _rate = {
+                    "timestamp": timestamp,
+                    "type": PARSER_TYPE_YAPIKREDI,
+                }
+                if rate["majorCurrency"] in [CURRENCY_EUR, CURRENCY_USD] and \
+                        rate["minorCurrency"] in STANDARD_CODES.keys():
+
+                    _rate["rate"] = rate["sellRate"]
+                    ret[rate["majorCurrency"]] = _rate
         return ret
 

@@ -2,8 +2,16 @@ from decimal import Decimal as D
 
 TCMB_TODAY_URL = 'http://www.tcmb.gov.tr/kurlar/today.xml'
 TCMB_ARCHIVE_URL = 'http://www.tcmb.gov.tr/kurlar/%Y%m/%d%m%Y.xml?_=%s'
-ISBANK_URL = 'https://www.isbank.com.tr/layouts/ISB_DA/HttpHandlers/FxRatesHandler.ashx?Lang=tr&fxRateType=INTERACTIVE&date=%(date)s&time=%(timestamp)s'
+ISBANK_URL = 'https://www.isbank.com.tr/_layouts/ISB_DA/HttpHandlers/FxRatesHandler.ashx?Lang=tr&fxRateType=INTERACTIVE&date=%(date)s&time=%(timestamp)s'
 YAPIKREDI_URL = 'https://api.yapikredi.com.tr/api/investmentrates/v1/currencyRates'
+BLOOMBERG_URL_DOLAR = 'https://www.bloomberght.com/piyasa/intradaydata/dolar'
+BLOOMBERG_URL_EURO = 'https://www.bloomberght.com/piyasa/intradaydata/euro'
+
+INVESTING_PARAMETERS = "/usr/bin/google-chrome-stable --headless --disable-gpu --dump-dom".split(" ")
+INVESTING_URL = 'https://www.widgets.investing.com/live-currency-cross-rates?cols=last&pairs=18,66'
+
+USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36"
+
 
 STANDARD_CODES = {
     'TL': 'TRY',
@@ -36,5 +44,6 @@ CURRENCY_USD_DESCRIPTION = "AMERİKAN DOLARI"
 
 PARSER_TYPE_TCMB = 0
 PARSER_TYPE_ISBANK = 1
-PARSER_TYPE_INVESTING = 2
-PARSER_TYPE_BLOOMBERG = 2
+PARSER_TYPE_YAPIKREDI = 2
+PARSER_TYPE_INVESTING = 3
+PARSER_TYPE_BLOOMBERG = 4

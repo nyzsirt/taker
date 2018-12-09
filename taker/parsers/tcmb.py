@@ -9,7 +9,7 @@ from xml.dom import minidom
 from .contants import *
 
 
-class Tcmb:
+class ParserTcmb():
     def __init__(self):
         self.earliest_date = datetime.date(1996, 4, 16)
 
