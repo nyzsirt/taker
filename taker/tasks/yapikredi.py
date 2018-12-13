@@ -9,8 +9,6 @@ from taker.parsers.yapikredi import ParserYapiKredi
 
 
 class YapiKredi(Task):
-    max_concurrency = 2
-
     def run(self, params):
         requester = ParserYapiKredi()
         rates = requester.get_rates(timestamp=time.time())

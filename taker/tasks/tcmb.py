@@ -10,8 +10,6 @@ from taker.parsers.contants import *
 
 
 class Tcmb(Task):
-    max_concurrency = 2
-
     def run(self, params):
         requester = ParserTcmb()
         rates = requester.get_rates()

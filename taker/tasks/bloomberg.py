@@ -9,8 +9,6 @@ from taker.parsers.bloomberg import ParserBloomberg
 
 
 class Bloomberg(Task):
-    max_concurrency = 2
-
     def run(self, params):
         requester = ParserBloomberg()
         rates = requester.get_rates(timestamp=time.time())

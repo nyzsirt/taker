@@ -9,8 +9,6 @@ from taker.parsers.isbank import ParserIsbank
 
 
 class IsBank(Task):
-    max_concurrency = 2
-
     def run(self, params):
         requester = ParserIsbank()
         rates = requester.get_rates(timestamp=time.time())
