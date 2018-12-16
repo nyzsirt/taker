@@ -7,8 +7,8 @@ YAPIKREDI_URL = 'https://api.yapikredi.com.tr/api/investmentrates/v1/currencyRat
 BLOOMBERG_URL_DOLAR = 'https://www.bloomberght.com/piyasa/intradaydata/dolar'
 BLOOMBERG_URL_EURO = 'https://www.bloomberght.com/piyasa/intradaydata/euro'
 
-INVESTING_PARAMETERS = "/usr/bin/google-chrome-stable --headless --disable-gpu --dump-dom".split(" ")
-INVESTING_URL = 'https://www.widgets.investing.com/live-currency-cross-rates?cols=last&pairs=18,66'
+INVESTING_PARAMETERS = "/usr/bin/google-chrome-stable --headless --no-sandbox --disable-gpu --dump-dom".split(" ")
+INVESTING_URL = 'https://www.widgets.investing.com/live-currency-cross-rates?cols=bid,ask&pairs=18,66'
 
 USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36"
 

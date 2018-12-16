@@ -20,6 +20,7 @@ class ParserIsbank():
                 "type": PARSER_TYPE_ISBANK,
             }
             if rate["code"] in [CURRENCY_EUR, CURRENCY_USD]:
-                _rate["rate"] = rate["effectiveRateSell"]
+                _rate["ask"] = rate["effectiveRateSell"]
+                _rate["bid"] = rate["effectiveRateBuy"]
                 ret[rate["code"]] = _rate
         return ret

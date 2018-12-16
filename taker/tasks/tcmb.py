@@ -7,6 +7,7 @@ sys.path.append(BASEPATH)
 from pprint import pprint
 from taker.parsers.tcmb import ParserTcmb
 from taker.parsers.contants import *
+from datetime import datetime
 
 
 class Tcmb(Task):
@@ -16,12 +17,14 @@ class Tcmb(Task):
         current_timestamp = time.time()
         exchange_usd = connections.mongodb_jobs.ex_usd_try
         exchange_eur = connections.mongodb_jobs.ex_eur_try
+        print("--------------------------------------------------------------------------------------"+ str(datetime.now()))
         for key in rates.keys():
             if key in [CURRENCY_EUR, CURRENCY_USD]:
                 _rate = {
                     "timestamp": current_timestamp,
                     "type": PARSER_TYPE_TCMB,
-                    "rate": rates[key]["BanknoteSelling"]
+                    "ask": rates[key]["BanknoteSelling"],
+                    "bid": rates[key]["BanknoteBuying"],
                 }
                 if key in [CURRENCY_EUR]:
                     exchange_eur.save(_rate)

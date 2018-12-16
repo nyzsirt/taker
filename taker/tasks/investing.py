@@ -14,6 +14,6 @@ class Investing(Task):
         rates = requester.get_rates(timestamp=time.time())
         exchange_usd = connections.mongodb_jobs.ex_usd_try
         exchange_eur = connections.mongodb_jobs.ex_eur_try
-        for key in rates.keys:
+        for key in rates.keys():
             exchange_usd.save(rates[key])
             exchange_eur.save(rates[key])

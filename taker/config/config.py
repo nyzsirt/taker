@@ -56,12 +56,12 @@ USE_LARGE_JOB_IDS = True #Do not use compacted job IDs in Redis. For compatibili
 mrq-worker settings
 """
 # The queues to listen on.Defaults to default , which will listen on all queues.
-QUEUES = ("isbank", "default", "tcmb", "yapikredi", "investing", "bloomberg", )
+QUEUES = ("_system", "isbank", "default", "tcmb", "yapikredi", "investing", "bloomberg", )
 # Gevent:max number of jobs to do before quitting. Workaround for memory leaks in your tasks. Defaults to 0
-MAX_JOBS = 8
+MAX_JOBS = 0
 # Max memory (in Mb) after which the process will be shut down. Use with PROCESS = [1-N] to have supervisord
 # automatically respawn the worker when this happens.Defaults to 1
-MAX_MEMORY = 10000
+MAX_MEMORY = 1000
 # Max number of greenlets to use.Defaults to 1.
 GREENLETS = 30
 # Number of processes to launch with supervisord.Defaults to 0.
@@ -71,9 +71,9 @@ SUPERVISORD_TEMPLATE = "supervisord_templates/default.conf"
 # Run the scheduler.Defaults to False.
 SCHEDULER = True
 # Seconds between scheduler checks.Defaults to 60 seconds, only ints are acceptable.
-SCHEDULER_INTERVAL = 5
+SCHEDULER_INTERVAL = 0.01
 # Seconds between worker reports to MongoDB.Defaults to 10 seconds, floats are acceptable too.
-REPORT_INTERVAL = 10.5
+REPORT_INTERVAL = 5
 # Filepath of a json dump of the worker status. Disabled if none.
 REPORT_FILE = ""
 # Start an admin server on this port, if provided. Incompatible with --processes.Defaults to 0
@@ -83,7 +83,7 @@ ADMIN_IP = "127.0.0.1"
 # Overwrite the local IP, to be displayed in the dashboard.
 LOCAL_IP = ""
 # Max seconds while worker may sleep waiting for a new job.Can be < 1 and a float value.
-MAX_LATENCY = 0.2
+MAX_LATENCY = 0
 
 """ 
 mrq-dashboard settings
@@ -100,14 +100,16 @@ except:
     NAME = socket.gethostname()
 
 # PAUSED_QUEUES_REFRESH_INTERVAL = 5
-SUBQUEUES_REFRESH_INTERVAL = 2
-# DEQUEUE_STRATEGY = "parallel"
+# SUBQUEUES_REFRESH_INTERVAL = 2
+DEQUEUE_STRATEGY = "parallel"
 
 
 SCHEDULER_TASKS = [
-    {"path": "tasks.tcmb.Tcmb", "params": {}, "interval": 60.0, "queue": "tcmb"},
-    {"path": "tasks.isbank.IsBank", "params": {}, "interval": 60.0, "queue": "isbank"},
-    {"path": "tasks.yapikredi.YapiKredi", "params": {}, "interval": 60.0, "queue": "yapikredi"},
-    {"path": "tasks.investing.Investing", "params": {}, "interval": 60.0, "queue": "isbank"},
-    {"path": "tasks.bloomberg.Bloomberg", "params": {}, "interval": 60.0, "queue": "bloomberg"},
+    {"path": "tasks.tcmb.Tcmb", "params": {}, "interval": 1, "queue": "tcmb"},
+    {"path": "tasks.isbank.IsBank", "params": {}, "interval": 1, "queue": "isbank"},
+    # {"path": "tasks.yapikredi.YapiKredi", "params": {}, "interval": 1, "queue": "yapikredi"},
+    {"path": "tasks.investing.Investing", "params": {}, "interval": 1, "queue": "investing"},
+    {"path": "tasks.bloomberg.Bloomberg", "params": {}, "interval": 1, "queue": "bloomberg"},
 ]
+
+TASKS = {}

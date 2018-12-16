@@ -51,7 +51,8 @@ class ParserYapiKredi(object):
                 if rate["majorCurrency"] in [CURRENCY_EUR, CURRENCY_USD] and \
                         rate["minorCurrency"] in STANDARD_CODES.keys():
 
-                    _rate["rate"] = rate["sellRate"]
+                    _rate["ask"] = rate["sellRate"]
+                    _rate["bid"] = rate["buyRate"]
                     ret[rate["majorCurrency"]] = _rate
         return ret
 
