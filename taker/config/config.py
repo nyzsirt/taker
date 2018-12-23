@@ -56,7 +56,8 @@ USE_LARGE_JOB_IDS = True #Do not use compacted job IDs in Redis. For compatibili
 mrq-worker settings
 """
 # The queues to listen on.Defaults to default , which will listen on all queues.
-QUEUES = ("_system", "isbank", "default", "tcmb", "yapikredi", "investing", "bloomberg", )
+# QUEUES = ("_system", "isbank", "default", "tcmb", "yapikredi", "investing", "bloomberg", )
+QUEUES = ("_system",)# "isbank", "default", "tcmb", "yapikredi", "investing", "bloomberg", )
 # Gevent:max number of jobs to do before quitting. Workaround for memory leaks in your tasks. Defaults to 0
 MAX_JOBS = 0
 # Max memory (in Mb) after which the process will be shut down. Use with PROCESS = [1-N] to have supervisord
@@ -73,7 +74,7 @@ SCHEDULER = True
 # Seconds between scheduler checks.Defaults to 60 seconds, only ints are acceptable.
 SCHEDULER_INTERVAL = 0.01
 # Seconds between worker reports to MongoDB.Defaults to 10 seconds, floats are acceptable too.
-REPORT_INTERVAL = 5
+REPORT_INTERVAL = 1
 # Filepath of a json dump of the worker status. Disabled if none.
 REPORT_FILE = ""
 # Start an admin server on this port, if provided. Incompatible with --processes.Defaults to 0
