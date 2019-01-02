@@ -57,7 +57,7 @@ mrq-worker settings
 """
 # The queues to listen on.Defaults to default , which will listen on all queues.
 # QUEUES = ("_system", "isbank", "default", "tcmb", "yapikredi", "investing", "bloomberg", )
-QUEUES = ("_system",)# "isbank", "default", "tcmb", "yapikredi", "investing", "bloomberg", )
+QUEUES = ("_system","default",)# "isbank", "default", "tcmb", "yapikredi", "investing", "bloomberg", )
 # Gevent:max number of jobs to do before quitting. Workaround for memory leaks in your tasks. Defaults to 0
 MAX_JOBS = 0
 # Max memory (in Mb) after which the process will be shut down. Use with PROCESS = [1-N] to have supervisord
@@ -94,23 +94,17 @@ DASHBOARD_QUEUE = "_system" #Default queue for dashboard actions.
 DASHBOARD_PORT = 5555 #Use this port for mrq-dashboard.Defaults to port 5555.
 DASHBOARD_IP = "0.0.0.0" #Bind the dashboard to this IP. Default is 0.0.0.0, use 127.0.0.1 to restrict access.
 
-try:
-    NAME = open('/proc/1/cpuset').read().strip()  # Name of docker container
-except:
-    import socket
-    NAME = socket.gethostname()
-
 # PAUSED_QUEUES_REFRESH_INTERVAL = 5
 # SUBQUEUES_REFRESH_INTERVAL = 2
-DEQUEUE_STRATEGY = "parallel"
+# DEQUEUE_STRATEGY = "parallel"
 
 
 SCHEDULER_TASKS = [
-    {"path": "tasks.tcmb.Tcmb", "params": {}, "interval": 1, "queue": "tcmb"},
-    {"path": "tasks.isbank.IsBank", "params": {}, "interval": 1, "queue": "isbank"},
-    # {"path": "tasks.yapikredi.YapiKredi", "params": {}, "interval": 1, "queue": "yapikredi"},
-    {"path": "tasks.investing.Investing", "params": {}, "interval": 1, "queue": "investing"},
-    {"path": "tasks.bloomberg.Bloomberg", "params": {}, "interval": 1, "queue": "bloomberg"},
+    # {"path": "tasks.tcmb.Tcmb", "params": {}, "interval": 1, "queue": "tcmb"},
+    # {"path": "tasks.isbank.IsBank", "params": {}, "interval": 1, "queue": "isbank"},
+    # # {"path": "tasks.yapikredi.YapiKredi", "params": {}, "interval": 1, "queue": "yapikredi"},
+    # {"path": "tasks.investing.Investing", "params": {}, "interval": 1, "queue": "investing"},
+    # {"path": "tasks.bloomberg.Bloomberg", "params": {}, "interval": 1, "queue": "bloomberg"},
 ]
 
 TASKS = {}

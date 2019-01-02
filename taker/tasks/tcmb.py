@@ -17,7 +17,6 @@ class Tcmb(Task):
         current_timestamp = time.time()
         exchange_usd = connections.mongodb_jobs.ex_usd_try
         exchange_eur = connections.mongodb_jobs.ex_eur_try
-        print("--------------------------------------------------------------------------------------"+ str(datetime.now()))
         for key in rates.keys():
             if key in [CURRENCY_EUR, CURRENCY_USD]:
                 _rate = {

@@ -1,6 +1,6 @@
 import os, sys, time
 from mrq.task import Task
-from mrq.context import log, connections, run_task
+from mrq.context import connections
 from mrq.basetasks.utils import JobAction
 BASEPATH = os.path.dirname(os.path.realpath(__file__)) + '/../../'
 sys.path.append(BASEPATH)
