@@ -16,3 +16,4 @@ lxml
 mrq
 urllib3
 Flask>=0.11.1
+pytz

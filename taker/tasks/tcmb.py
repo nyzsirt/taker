@@ -12,6 +12,7 @@ from datetime import datetime
 
 class Tcmb(Task):
     def run(self, params):
+
         requester = ParserTcmb()
         rates = requester.get_rates()
         current_timestamp = time.time()
