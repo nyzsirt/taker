@@ -57,7 +57,7 @@ mrq-worker settings
 """
 # The queues to listen on.Defaults to default , which will listen on all queues.
 # QUEUES = ("_system", "isbank", "default", "tcmb", "yapikredi", "investing", "bloomberg", )
-QUEUES = ("_system","default",)# "isbank", "default", "tcmb", "yapikredi", "investing", "bloomberg", )
+QUEUES = ("default", )
 # Gevent:max number of jobs to do before quitting. Workaround for memory leaks in your tasks. Defaults to 0
 MAX_JOBS = 0
 # Max memory (in Mb) after which the process will be shut down. Use with PROCESS = [1-N] to have supervisord
@@ -103,8 +103,8 @@ SCHEDULER_TASKS = [
     # {"path": "tasks.tcmb.Tcmb", "params": {}, "interval": 1, "queue": "tcmb"},
     # {"path": "tasks.isbank.IsBank", "params": {}, "interval": 1, "queue": "isbank"},
     # # {"path": "tasks.yapikredi.YapiKredi", "params": {}, "interval": 1, "queue": "yapikredi"},
-    # {"path": "tasks.investing.Investing", "params": {}, "interval": 1, "queue": "investing"},
-    # {"path": "tasks.bloomberg.Bloomberg", "params": {}, "interval": 1, "queue": "bloomberg"},
+    {"path": "tasks.investing.Investing", "params": {}, "interval": 1, "queue": "default"},
+    {"path": "tasks.bloomberg.Bloomberg", "params": {}, "interval": 1, "queue": "default"},
 ]
 
 TASKS = {}
