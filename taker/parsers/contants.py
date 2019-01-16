@@ -4,8 +4,8 @@ TCMB_TODAY_URL = 'http://www.tcmb.gov.tr/kurlar/today.xml'
 TCMB_ARCHIVE_URL = 'http://www.tcmb.gov.tr/kurlar/%Y%m/%d%m%Y.xml?_=%s'
 ISBANK_URL = 'https://www.isbank.com.tr/_layouts/ISB_DA/HttpHandlers/FxRatesHandler.ashx?Lang=tr&fxRateType=INTERACTIVE&date=%(date)s&time=%(timestamp)s'
 YAPIKREDI_URL = 'https://api.yapikredi.com.tr/api/investmentrates/v1/currencyRates'
-BLOOMBERG_URL_DOLAR = 'https://www.bloomberght.com/piyasa/intradaydata/dolar'
-BLOOMBERG_URL_EURO = 'https://www.bloomberght.com/piyasa/intradaydata/euro'
+BLOOMBERG_URL_DOLAR = 'https://www.bloomberght.com/doviz/dolar'
+BLOOMBERG_URL_EURO = 'https://www.bloomberght.com/doviz/euro'
 
 INVESTING_PARAMETERS = "/usr/bin/google-chrome-stable --headless --no-sandbox --disable-gpu --dump-dom".split(" ")
 INVESTING_URL = 'https://www.widgets.investing.com/live-currency-cross-rates?cols=bid,ask&pairs=18,66'
