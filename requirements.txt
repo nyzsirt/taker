@@ -4,3 +4,4 @@ mrq
 urllib3
 Flask>=0.11.1
 pytz
+redis==2.10.5
