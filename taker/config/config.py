@@ -100,10 +100,10 @@ DASHBOARD_IP = "0.0.0.0" #Bind the dashboard to this IP. Default is 0.0.0.0, use
 
 
 SCHEDULER_TASKS = [
-    {"path": "tasks.tcmb.Tcmb", "params": {}, "interval": 2, "queue": "default"},
-    {"path": "tasks.isbank.IsBank", "params": {}, "interval": 2, "queue": "default"},
-    {"path": "tasks.investing.Investing", "params": {}, "interval": 2, "queue": "default"},
-    {"path": "tasks.bloomberg.Bloomberg", "params": {}, "interval": 2, "queue": "default"},
+    {"path": "tasks.tcmb.Tcmb", "params": {}, "interval": 1, "queue": "default"},
+    {"path": "tasks.isbank.IsBank", "params": {}, "interval": 1, "queue": "default"},
+    {"path": "tasks.investing.Investing", "params": {}, "interval": 1, "queue": "default"},
+    {"path": "tasks.bloomberg.Bloomberg", "params": {}, "interval": 1, "queue": "default"},
 ]
 
 TASKS = {}
