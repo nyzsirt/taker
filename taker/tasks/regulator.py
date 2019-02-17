@@ -37,22 +37,22 @@ class Export(object):
 
         bloomberg = collection.find(
             {"type": PARSER_TYPE_BLOOMBERG, "timestamp": {"$gte": start_timestamp, "$lt": end_timestamp}})
-        with open(DATA_PATH + "usd-bloomberg-%s-%s.csv" % (start, end), "w") as ff:
+        with open(DATA_PATH + "%s-bloomberg-%s-%s.csv" % (currency_type, start, end), "w") as ff:
             ff.writelines(self._flatten(bloomberg))
 
         investing = collection.find(
             {"type": PARSER_TYPE_INVESTING, "timestamp": {"$gte": start_timestamp, "$lt": end_timestamp}})
-        with open(DATA_PATH + "usd-investing-%s-%s.csv" % (start, end), "w") as ff:
+        with open(DATA_PATH + "%s-investing-%s-%s.csv" % (currency_type, start, end), "w") as ff:
             ff.writelines(self._flatten(investing))
 
         isbank = collection.find(
             {"type": PARSER_TYPE_ISBANK, "timestamp": {"$gte": start_timestamp, "$lt": end_timestamp}})
-        with open(DATA_PATH + "usd-isbank-%s-%s.csv" % (start, end), "w") as ff:
+        with open(DATA_PATH + "%s-isbank-%s-%s.csv" % (currency_type, start, end), "w") as ff:
             ff.writelines(self._flatten(isbank))
 
         tcmb = collection.find(
             {"type": PARSER_TYPE_TCMB, "timestamp": {"$gte": start_timestamp, "$lt": end_timestamp}})
-        with open(DATA_PATH + "usd-tcmb-%s-%s.csv" % (start, end), "w") as ff:
+        with open(DATA_PATH + "%s-tcmb-%s-%s.csv" % (currency_type, start, end), "w") as ff:
             ff.writelines(self._flatten(tcmb))
 
         # collection.remove()
@@ -66,6 +66,7 @@ class Regulator(Task):
 
     @staticmethod
     def wrapper(arguments):
+        print(arguments)
         exporter = Export()
         return exporter.subb(*arguments)
 
