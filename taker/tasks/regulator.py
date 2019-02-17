@@ -69,8 +69,8 @@ class Regulator(Task):
         end = datetime.fromtimestamp(curr_time).strftime(TIME_FORMAT)
 
         iterator = [
-            [CURRENCY_EUR, start, end],
-            [CURRENCY_USD, start, end],
+            (CURRENCY_EUR, start, end),
+            (CURRENCY_USD, start, end),
         ]
         exporter = Export()
         ret = []
