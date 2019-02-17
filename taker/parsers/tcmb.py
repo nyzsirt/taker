@@ -6,7 +6,7 @@ from decimal import ROUND_HALF_EVEN, InvalidOperation
 from urllib.request import urlopen
 from xml.dom import minidom
 
-from .contants import *
+from .constants import *
 
 
 class ParserTcmb():

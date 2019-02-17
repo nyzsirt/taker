@@ -6,7 +6,7 @@ from datetime import datetime
 from pytz import utc, timezone
 from time import mktime
 from mrq.context import connections, log, setup_context
-from taker.parsers.contants import *
+from taker.parsers.constants import *
 from pprint import pprint
 
 parser = argparse.ArgumentParser(description='Add assets to tags from file.')
@@ -20,7 +20,7 @@ time_format = "%Y%m%d%H%M%S"
 def _flatten(data):
     content = []
     for line in data:
-        line["date"] = datetime.fromtimestamp(line["timestamp"]).strftime(time_format)
+        line["date"] = datetime.fromtimestamp(line["timestamp"]).strftime(TIME_FORMAT)
         try:
             content.append(
                 "%(date)s %(ask)s %(bid)s\n" % line

@@ -2,7 +2,7 @@ import requests, time, os, sys
 BASEPATH = os.path.dirname(os.path.realpath(__file__)) + '/../../'
 sys.path.append(BASEPATH)
 from datetime import datetime
-from taker.parsers.contants import *
+from taker.parsers.constants import *
 
 
 class ParserYapiKredi(object):

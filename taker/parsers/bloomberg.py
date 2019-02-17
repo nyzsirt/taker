@@ -4,7 +4,7 @@ sys.path.append(BASEPATH)
 from datetime import datetime
 from lxml import html
 from  pprint import pprint
-from taker.parsers.contants import *
+from taker.parsers.constants import *
 
 
 class ParserBloomberg(object):

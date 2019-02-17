@@ -6,7 +6,7 @@ BASEPATH = os.path.dirname(os.path.realpath(__file__)) + '/../../'
 sys.path.append(BASEPATH)
 from pprint import pprint
 from taker.parsers.tcmb import ParserTcmb
-from taker.parsers.contants import *
+from taker.parsers.constants import *
 from datetime import datetime
 
 

@@ -104,6 +104,7 @@ SCHEDULER_TASKS = [
     {"path": "tasks.isbank.IsBank", "params": {}, "interval": 1, "queue": "default"},
     {"path": "tasks.investing.Investing", "params": {}, "interval": 1, "queue": "default"},
     {"path": "tasks.bloomberg.Bloomberg", "params": {}, "interval": 1, "queue": "default"},
+    {"path": "tasks.regulator.Regulator", "params": {}, "interval": 60, "queue": "default"},
 ]
 
 TASKS = {}

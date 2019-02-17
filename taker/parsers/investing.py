@@ -3,7 +3,7 @@ BASEPATH = os.path.dirname(os.path.realpath(__file__)) + '/../../'
 sys.path.append(BASEPATH)
 from datetime import datetime
 from  pprint import pprint
-from taker.parsers.contants import *
+from taker.parsers.constants import *
 from xml.dom import minidom
 import subprocess
 

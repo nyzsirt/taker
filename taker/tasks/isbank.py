@@ -6,7 +6,7 @@ BASEPATH = os.path.dirname(os.path.realpath(__file__)) + '/../../'
 sys.path.append(BASEPATH)
 from pprint import pprint
 from taker.parsers.isbank import ParserIsbank
-from taker.parsers.contants import CURRENCY_EUR
+from taker.parsers.constants import CURRENCY_EUR
 
 
 class IsBank(Task):
