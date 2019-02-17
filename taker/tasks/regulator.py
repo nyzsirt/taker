@@ -29,7 +29,7 @@ class Export(object):
     def export_data(self, currency_type, start, end):
         start_timestamp = mktime(utc.localize(datetime.strptime(start, TIME_FORMAT)).utctimetuple())
         end_timestamp = mktime(utc.localize(datetime.strptime(end, TIME_FORMAT)).utctimetuple())
-        
+
         if currency_type == CURRENCY_EUR:
             collection = connections.mongodb_jobs.ex_eur_try
         else:
@@ -59,10 +59,15 @@ class Export(object):
 
     def subb(self, currency_type, start, end):
         self.export_data(currency_type, start, end)
-        return[{"succes": True}]
+        return[{"success": True}]
 
 
 class Regulator(Task):
+
+    @staticmethod
+    def wrapper(arguments):
+        exporter = Export()
+        return exporter.subb(*arguments)
 
     def run(self, params):
 
@@ -74,9 +79,8 @@ class Regulator(Task):
             (CURRENCY_EUR, start, end),
             (CURRENCY_USD, start, end),
         ]
-        exporter = Export()
         ret = []
-        for res in subpool_imap(len(iterator), exporter.subb, iterator, unordered=True):
+        for res in subpool_imap(len(iterator), Regulator.wrapper, iterator, unordered=True):
             ret += res
 
 
