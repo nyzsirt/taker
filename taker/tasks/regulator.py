@@ -1,4 +1,6 @@
 import os, sys, time
+from pytz import utc
+from time import mktime
 from datetime import datetime, timedelta
 from mrq.task import Task
 from mrq.context import log, connections, run_task
@@ -25,9 +27,9 @@ class Export(object):
         return content
 
     def export_data(self, currency_type, start, end):
-        start_timestamp = start.timestamp()
-        end_timestamp = end.timestamp()
-
+        start_timestamp = mktime(utc.localize(datetime.strptime(start, TIME_FORMAT)).utctimetuple())
+        end_timestamp = mktime(utc.localize(datetime.strptime(end, TIME_FORMAT)).utctimetuple())
+        
         if currency_type == CURRENCY_EUR:
             collection = connections.mongodb_jobs.ex_eur_try
         else:
