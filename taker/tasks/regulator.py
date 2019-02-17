@@ -24,9 +24,14 @@ class Export(object):
                 pass
         return content
 
-    def export_data(self, collection, start, end):
+    def export_data(self, currency_type, start, end):
         start_timestamp = start.timestamp()
         end_timestamp = end.timestamp()
+
+        if currency_type == CURRENCY_EUR:
+            collection = connections.mongodb_jobs.ex_eur_try
+        else:
+            collection = connections.mongodb_jobs.ex_usd_try
 
         bloomberg = collection.find(
             {"type": PARSER_TYPE_BLOOMBERG, "timestamp": {"$gte": start_timestamp, "$lt": end_timestamp}})
@@ -48,9 +53,10 @@ class Export(object):
         with open(DATA_PATH + "usd-tcmb-%s-%s.csv" % (start, end), "w") as ff:
             ff.writelines(self._flatten(tcmb))
 
-    def subb(self, collection, start, end):
-        self.export_data(collection, start, end)
-        collection.remove()
+        # collection.remove()
+
+    def subb(self, currency_type, start, end):
+        self.export_data(currency_type, start, end)
         return[{"succes": True}]
 
 
@@ -62,11 +68,9 @@ class Regulator(Task):
         start = (datetime.fromtimestamp(curr_time) - timedelta(hours=24)).strftime(TIME_FORMAT)
         end = datetime.fromtimestamp(curr_time).strftime(TIME_FORMAT)
 
-        eur_rates = connections.mongodb_jobs.ex_eur_try
-        usd_rates = connections.mongodb_jobs.ex_usd_try
         iterator = [
-            [eur_rates, start, end],
-            [usd_rates, start, end],
+            [CURRENCY_EUR, start, end],
+            [CURRENCY_USD, start, end],
         ]
         exporter = Export()
         ret = []
