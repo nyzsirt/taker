@@ -48,7 +48,7 @@ class Export(object):
         with open(DATA_PATH + "usd-tcmb-%s-%s.csv" % (start, end), "w") as ff:
             ff.writelines(self._flatten(tcmb))
 
-    def subb(self, collection=None, start="", end=""):
+    def subb(self, collection, start, end):
         self.export_data(collection, start, end)
         collection.remove()
         return[{"succes": True}]
