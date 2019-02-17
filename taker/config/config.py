@@ -11,9 +11,10 @@ Redis and MongoDB settings
 """
 # MongoDB SETTINGS
 # MongoDB URI for the jobs, scheduled_jobs & workers database.Defaults to mongodb://127.0.0.1:27017/mrq
-MONGODB_JOBS = "mongodb://127.0.0.1:27017/taker"
+
+MONGODB_JOBS = "mongodb://127.0.0.1:27017/taker?connectTimeoutMS=10000&socketTimeoutMS=10000&maxIdleTimeMS=8000&readPreference=nearest&maxPoolSize=20&maxStalenessSeconds=13"
 # MongoDB URI for the logs database."0" will disable remote logs, "1" will use main MongoDB.Defaults to 1
-MONGODB_LOGS = "mongodb://127.0.0.1:27017/taker"
+MONGODB_LOGS = "mongodb://127.0.0.1:27017/taker?connectTimeoutMS=10000&socketTimeoutMS=10000&maxIdleTimeMS=8000&readPreference=nearest&maxPoolSize=20&maxStalenessSeconds=13"
 # If provided, sets the log collection to capped to that amount of bytes.
 MONGODB_LOGS_SIZE = None
 # If provided, skip the creation of MongoDB indexes at worker startup.
@@ -62,7 +63,7 @@ QUEUES = ("default", )
 MAX_JOBS = 0
 # Max memory (in Mb) after which the process will be shut down. Use with PROCESS = [1-N] to have supervisord
 # automatically respawn the worker when this happens.Defaults to 1
-MAX_MEMORY = 1000
+MAX_MEMORY = 750
 # Max number of greenlets to use.Defaults to 1.
 GREENLETS = 30
 # Number of processes to launch with supervisord.Defaults to 0.
