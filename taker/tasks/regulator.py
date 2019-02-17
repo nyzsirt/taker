@@ -54,8 +54,7 @@ class Export(object):
             {"type": PARSER_TYPE_TCMB, "timestamp": {"$gte": start_timestamp, "$lt": end_timestamp}})
         with open(DATA_PATH + "%s-tcmb-%s-%s.csv" % (currency_type, start, end), "w") as ff:
             ff.writelines(self._flatten(tcmb))
-
-        # collection.remove()
+        collection.delete_many({})
 
     def subb(self, currency_type, start, end):
         self.export_data(currency_type, start, end)
@@ -66,23 +65,25 @@ class Regulator(Task):
 
     @staticmethod
     def wrapper(arguments):
-        print(arguments)
         exporter = Export()
         return exporter.subb(*arguments)
 
     def run(self, params):
+        curr_date = datetime.now()
+        if True:
+        # if curr_date.hour == 22 and curr_date.minute == 32:
+            curr_time = time.time()
+            start = (datetime.fromtimestamp(curr_time) - timedelta(hours=24)).strftime(TIME_FORMAT)
+            end = datetime.fromtimestamp(curr_time).strftime(TIME_FORMAT)
 
-        curr_time = time.time()
-        start = (datetime.fromtimestamp(curr_time) - timedelta(hours=24)).strftime(TIME_FORMAT)
-        end = datetime.fromtimestamp(curr_time).strftime(TIME_FORMAT)
-
-        iterator = [
-            (CURRENCY_EUR, start, end),
-            (CURRENCY_USD, start, end),
-        ]
-        ret = []
-        for res in subpool_imap(len(iterator), Regulator.wrapper, iterator, unordered=True):
-            ret += res
+            iterator = [
+                (CURRENCY_EUR, start, end),
+                (CURRENCY_USD, start, end),
+            ]
+            ret = []
+            for res in subpool_imap(len(iterator), Regulator.wrapper, iterator, unordered=True):
+                ret += res
+        return "success"
 
 
 
