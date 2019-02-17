@@ -10,7 +10,7 @@ from parsers.constants import *
 from mrq.context import subpool_imap
 
 
-class Regulator(Task):
+class Export(object):
 
     def _flatten(self, data):
         content = []
@@ -48,10 +48,13 @@ class Regulator(Task):
         with open(DATA_PATH + "usd-tcmb-%s-%s.csv" % (start, end), "w") as ff:
             ff.writelines(self._flatten(tcmb))
 
-    def subb(self, collection, start, end):
+    def subb(self, collection=None, start="", end=""):
         self.export_data(collection, start, end)
         collection.remove()
         return[{"succes": True}]
+
+
+class Regulator(Task):
 
     def run(self, params):
 
@@ -65,8 +68,9 @@ class Regulator(Task):
             [eur_rates, start, end],
             [usd_rates, start, end],
         ]
+        exporter = Export()
         ret = []
-        for res in subpool_imap(len(iterator), self.subb, iterator, unordered=True):
+        for res in subpool_imap(len(iterator), exporter.subb, iterator, unordered=True):
             ret += res
 
 
