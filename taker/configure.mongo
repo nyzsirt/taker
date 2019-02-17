@@ -1,1 +1,10 @@
 #!/usr/bin/env bash
+
+mongo taker --eval "db.dropDatabase()"
+mongo taker --eval "db.createCollection('ex_eur_try')"
+mongo taker --eval "db.ex_eur_try.createIndex({'type': 1}, {'unique': false})"
+mongo taker --eval "db.ex_eur_try.createIndex({'timestamp': 1}, {'unique': false})"
+mongo taker --eval "db.createCollection('ex_usd_try')"
+mongo taker --eval "db.ex_usd_try.createIndex({'type': 1}, {'unique': false})"
+mongo taker --eval "db.ex_usd_try.createIndex({'timestamp': 1}, {'unique': false})"
+
