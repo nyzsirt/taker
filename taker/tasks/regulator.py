@@ -70,7 +70,7 @@ class Regulator(Task):
 
     def run(self, params):
         curr_date = datetime.now()
-        if curr_date.hour == 22 and curr_date.minute == 32:
+        if curr_date.hour == 1 and curr_date.minute == 45:
             curr_time = time.time()
             start = (datetime.fromtimestamp(curr_time) - timedelta(hours=24)).strftime(TIME_FORMAT)
             end = datetime.fromtimestamp(curr_time).strftime(TIME_FORMAT)
