@@ -60,20 +60,20 @@ mrq-worker settings
 # QUEUES = ("_system", "isbank", "default", "tcmb", "yapikredi", "investing", "bloomberg", )
 QUEUES = ("default", )
 # Gevent:max number of jobs to do before quitting. Workaround for memory leaks in your tasks. Defaults to 0
-MAX_JOBS = 0
+MAX_JOBS = 10
 # Max memory (in Mb) after which the process will be shut down. Use with PROCESS = [1-N] to have supervisord
 # automatically respawn the worker when this happens.Defaults to 1
-MAX_MEMORY = 750
+MAX_MEMORY = 2000
 # Max number of greenlets to use.Defaults to 1.
-GREENLETS = 30
+GREENLETS = 8
 # Number of processes to launch with supervisord.Defaults to 0.
-PROCESSES = 0
+PROCESSES = 2
 # Path of supervisord template to use. Defaults to supervisord_templates/default.conf.
 SUPERVISORD_TEMPLATE = "supervisord_templates/default.conf"
 # Run the scheduler.Defaults to False.
 SCHEDULER = True
 # Seconds between scheduler checks.Defaults to 60 seconds, only ints are acceptable.
-SCHEDULER_INTERVAL = 0.01
+SCHEDULER_INTERVAL = 0.4
 # Seconds between worker reports to MongoDB.Defaults to 10 seconds, floats are acceptable too.
 REPORT_INTERVAL = 1
 # Filepath of a json dump of the worker status. Disabled if none.
@@ -97,7 +97,7 @@ DASHBOARD_IP = "0.0.0.0" #Bind the dashboard to this IP. Default is 0.0.0.0, use
 
 # PAUSED_QUEUES_REFRESH_INTERVAL = 5
 # SUBQUEUES_REFRESH_INTERVAL = 2
-# DEQUEUE_STRATEGY = "parallel"
+DEQUEUE_STRATEGY = "parallel"
 
 
 SCHEDULER_TASKS = [
