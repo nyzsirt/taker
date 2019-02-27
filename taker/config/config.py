@@ -65,7 +65,7 @@ MAX_JOBS = 0
 # automatically respawn the worker when this happens.Defaults to 1
 MAX_MEMORY = 2000
 # Max number of greenlets to use.Defaults to 1.
-GREENLETS = 8
+GREENLETS = 11
 # Number of processes to launch with supervisord.Defaults to 0.
 PROCESSES = 0
 # Path of supervisord template to use. Defaults to supervisord_templates/default.conf.
