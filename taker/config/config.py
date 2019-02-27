@@ -60,14 +60,14 @@ mrq-worker settings
 # QUEUES = ("_system", "isbank", "default", "tcmb", "yapikredi", "investing", "bloomberg", )
 QUEUES = ("default", )
 # Gevent:max number of jobs to do before quitting. Workaround for memory leaks in your tasks. Defaults to 0
-MAX_JOBS = 10
+MAX_JOBS = 0
 # Max memory (in Mb) after which the process will be shut down. Use with PROCESS = [1-N] to have supervisord
 # automatically respawn the worker when this happens.Defaults to 1
 MAX_MEMORY = 2000
 # Max number of greenlets to use.Defaults to 1.
 GREENLETS = 8
 # Number of processes to launch with supervisord.Defaults to 0.
-PROCESSES = 2
+PROCESSES = 0
 # Path of supervisord template to use. Defaults to supervisord_templates/default.conf.
 SUPERVISORD_TEMPLATE = "supervisord_templates/default.conf"
 # Run the scheduler.Defaults to False.
