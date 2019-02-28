@@ -63,7 +63,7 @@ QUEUES = ("default", )
 MAX_JOBS = 0
 # Max memory (in Mb) after which the process will be shut down. Use with PROCESS = [1-N] to have supervisord
 # automatically respawn the worker when this happens.Defaults to 1
-MAX_MEMORY = 2000
+MAX_MEMORY = 4000
 # Max number of greenlets to use.Defaults to 1.
 GREENLETS = 11
 # Number of processes to launch with supervisord.Defaults to 0.
@@ -73,7 +73,7 @@ SUPERVISORD_TEMPLATE = "supervisord_templates/default.conf"
 # Run the scheduler.Defaults to False.
 SCHEDULER = True
 # Seconds between scheduler checks.Defaults to 60 seconds, only ints are acceptable.
-SCHEDULER_INTERVAL = 0.4
+SCHEDULER_INTERVAL = 0.3
 # Seconds between worker reports to MongoDB.Defaults to 10 seconds, floats are acceptable too.
 REPORT_INTERVAL = 1
 # Filepath of a json dump of the worker status. Disabled if none.
