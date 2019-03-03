@@ -57,15 +57,14 @@ USE_LARGE_JOB_IDS = True #Do not use compacted job IDs in Redis. For compatibili
 mrq-worker settings
 """
 # The queues to listen on.Defaults to default , which will listen on all queues.
-# QUEUES = ("_system", "isbank", "default", "tcmb", "yapikredi", "investing", "bloomberg", )
-QUEUES = ("default", )
+QUEUES = ("default", "_system")
 # Gevent:max number of jobs to do before quitting. Workaround for memory leaks in your tasks. Defaults to 0
 MAX_JOBS = 0
 # Max memory (in Mb) after which the process will be shut down. Use with PROCESS = [1-N] to have supervisord
 # automatically respawn the worker when this happens.Defaults to 1
-MAX_MEMORY = 4000
+MAX_MEMORY = 2000
 # Max number of greenlets to use.Defaults to 1.
-GREENLETS = 11
+GREENLETS = 3
 # Number of processes to launch with supervisord.Defaults to 0.
 PROCESSES = 0
 # Path of supervisord template to use. Defaults to supervisord_templates/default.conf.
@@ -73,9 +72,9 @@ SUPERVISORD_TEMPLATE = "supervisord_templates/default.conf"
 # Run the scheduler.Defaults to False.
 SCHEDULER = True
 # Seconds between scheduler checks.Defaults to 60 seconds, only ints are acceptable.
-SCHEDULER_INTERVAL = 0.3
+SCHEDULER_INTERVAL = 1
 # Seconds between worker reports to MongoDB.Defaults to 10 seconds, floats are acceptable too.
-REPORT_INTERVAL = 1
+REPORT_INTERVAL = 0.5
 # Filepath of a json dump of the worker status. Disabled if none.
 REPORT_FILE = ""
 # Start an admin server on this port, if provided. Incompatible with --processes.Defaults to 0
@@ -101,11 +100,7 @@ DEQUEUE_STRATEGY = "parallel"
 
 
 SCHEDULER_TASKS = [
-    {"path": "tasks.tcmb.Tcmb", "params": {}, "interval": 1, "queue": "default"},
-    {"path": "tasks.isbank.IsBank", "params": {}, "interval": 1, "queue": "default"},
-    {"path": "tasks.investing.Investing", "params": {}, "interval": 1, "queue": "default"},
-    {"path": "tasks.bloomberg.Bloomberg", "params": {}, "interval": 1, "queue": "default"},
-    {"path": "tasks.regulator.Regulator", "params": {}, "interval": 60, "queue": "default"},
+    {"path": "tasks.regulator.Regulator", "params": {}, "interval": 60, "queue": "_system"},
 ]
 
 TASKS = {}
